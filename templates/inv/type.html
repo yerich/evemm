@@ -1,0 +1,73 @@
+{% load extras %}
+
+<span style="float: right; padding: 13px 5px 0 0;">Item: &nbsp;{{ type.group.category.name }} &nbsp;> &nbsp;{{ type.group.name }}</span><h1 style="margin-bottom: 0;">{{ type.name }}</h1>
+
+<table style="background: #C66A00; margin: 0px 0px 5px; width: 100%; color: #FFF; font-size: 13px;">
+	<tr>
+		<td>
+			ASK: {{ type.ask.0|floatFormat:'%.2f'|default:"N/A"}}{% if type.ask.1 != type.ask.0 %} - {{ type.ask.1|floatFormat:'%.2f'|default:"N/A" }}{% endif %} ISK
+		</td>
+		<td>
+			BID: {{ type.bid.0|floatFormat:'%.2f'|default:"N/A" }}{% if type.bid.1 != type.bid.0 %} - {{ type.bid.1|floatFormat:'%.2f'|default:"N/A" }}{% endif %} ISK
+		</td>
+		<td>
+			VOL: {{ type.volumetoday|floatFormat:'%.2f'|default:"0" }}
+		</td>
+		<td>
+			PRICE: {{ type.price|floatFormat:'%.2f'|default:"N/A" }} ISK
+		</td>
+	</tr>
+</table>
+
+<table style="width: 100%; border-collapse: collapse;">
+	<tr>
+		<td style="padding-right: 5px; padding-top: 5px; border-right: 1px solid #444; border-collapse: collapse;">
+			<table style="width: 100%;">
+				<tr>
+					<td style="line-height: 250%; border-bottom: 1px solid #444;" colspan="2">
+						<div style="line-height: 20px; display: inline-block; font-size: 50px; padding: 2px 0px; ">{{ price_today|floatFormat:'%.2f'|default:"NOT AVAILABLE" }}</div>
+						{% if price_today %}
+						<span style="font-size: 28px; position: relative; top: 6px;color: {{ price_color }}">
+							{% if price_color and price_change > 0 %}&nbsp;&#x25B2;{% endif %}{% if price_change = 0 %}&nbsp;--{% endif %}{% if price_color and price_change < 0 %}&nbsp;&#x25BC{% endif %}&nbsp;{{ price_change|floatFormat:'%.2f'|default:"0.00" }}</span><br />
+						{% endif %}
+						<span style="font-size: 12px">{% if price_yesterday %}Yesterday {{ price_yesterday|floatFormat:'%.2f'|default:"N/A" }} ISK{% endif %}</span>
+					</td>
+				</tr>
+				<tr>
+					<td style="width: 50%; padding: 5px 0;">
+						{% if lowest_price %}
+						Lowest Asking Price: <strong>{{ lowest_price.price|floatFormat:'%.2f'|default:"N/A" }}</strong> ISK x{{ lowest_price.order.volRemaining }} <br />
+						{{ lowest_price.order.station.name }} {{ highest_price.order.solarSystem.securityLevel|floatFormat:'%.1f' }}, {{ lowest_price.order.station.constellation.name }}, {{ lowest_price.order.station.region.name }}<br />
+						Infomation accurate as of {{ highest_price.order.issueDate|date:"Y/m/d h:m" }}
+						{% endif %}
+					</td>
+					<td style="padding: 5px 0;">
+						{% if highest_price %}
+						Highest Bidding Price: <strong>{{ highest_price.price|floatFormat:'%.2f'|default:"N/A" }}</strong> ISK x{{ highest_price.order.volRemaining }} <br />
+						{{ highest_price.order.station.name }} {{ highest_price.order.solarSystem.securityLevel|floatFormat:'%.1f' }}, {{ highest_price.order.station.constellation.name }}, {{ highest_price.order.station.region.name }}<br />
+						Infomation accurate as of {{ highest_price.order.issueDate|date:"Y/m/d h:m" }}
+						{% endif %}
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" style="border-top: 1px solid #444; padding-top: 5px;">
+						{% for i in history %}
+						{{ i.date }} - {{ i.volume }} - {{ i.average }}<br />
+						{% endfor %}
+					</td>
+				</tr>
+			</table>
+		</td>
+		<td style="width: 40%; padding-left: 5px; border-left: 1px solid #444;">
+			<img src='/static/icons/types/{{ type.id }}_64.png' style="float:right; padding: 0px 0px 5px 5px; width: 64px; height: 64px;"/>
+			VOLUME: {{ type.volume|floatFormat:'%.2f' }}m<sup>3</sup><br />
+			CAPACITY: {% if type.capacity %}{{type.capacity}}m<sup>3</sup>{% else %}N/A{% endif %}<br />
+			BASE PRICE: {{ type.formatted_basePrice }}<br /><br />
+			
+			{{ type.description.strip|default:""|safe|linebreaks }}
+		</td>
+	</tr>
+	<tr>
+		
+	</tr>
+</table>

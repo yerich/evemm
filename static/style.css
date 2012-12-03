@@ -1,0 +1,32 @@
+@import url(http://fonts.googleapis.com/css?family=Archivo+Narrow:400,400italic,700,700italic);
+
+html, body { height: 100%; margin: 0; overflow: hidden; padding: 0; color: #CBCBCB; background: #242424; font-family: "Archivo Narrow", 'Lucida Console', 
+	sans-serif; font-size: 13px; text-shadow: 0.5px 0.5px 0px #FFF;}
+#appLayout { height: 100%;}
+#leftCol { width: 14em;}
+.nihilo .demoLayout .edgePanel { background-color: #272727; }
+#viewsChart { width: 550px; height: 550px;}
+
+.nihilo .dijitBorderContainer { background: #0A0A0A;}
+.nihilo .dijitSplitContainer-dijitContentPane, .nihilo .dijitBorderContainer-dijitContentPane { background: #0A0A0A;}
+.nihilo .dijitSplitterV, .nihilo .dijitGutterV { background: #121212; border-color: #444;}
+.nihilo .dijitSplitContainer-child, .nihilo .dijitBorderContainer-child { border-color: #444;}
+.nihilo .dijitSplitterH, .nihilo .dijitGutterH { height: 0px;}
+
+input { background: #373737; border: 1px solid #272727;}
+::-webkit-input-placeholder { color: #777; text-transform: none;}
+:-moz-placeholder { color: #777; text-transform: none}
+:-ms-input-placeholder { color: #777; text-transform: none}
+*:focus { outline: none; }  
+input:focus { border-color: #555;}
+#main_input_wrapper { padding-right: 8px;}
+#main_input { width: 100%; padding: 3px; color: #FFF; font-family: "Archivo Narrow", 'Lucida Console', sans-serif; font-size: 16px; text-transform: uppercase;}
+.centerPanel { overflow: hidden;}
+
+h1 { font-size: 15px; background: #900000; text-transform: uppercase; padding: 3px; border-bottom: 1px solid #F00; color: #FFF;}
+
+a { color: #D59A56; text-decoration: none;}
+#result { margin-top: 5px; overflow: auto;}
+
+td, th { vertical-align: top; padding: 1px 8px 1px 0; text-align: left;}
+p { margin-top: 0;}
